@@ -1,9 +1,10 @@
 const graphql = require("graphql")
 const _ = require("lodash")
-
 const {GraphQLID,GraphQLInt,GraphQLObjectType,GraphQLString,GraphQLSchema,GraphQLList} = graphql
+const author_model = require("../Models/Author")
+const book_model = require("../Models/Book")
 
-var Books = [
+/*var Books = [
     {id: "1",name: "3 idots",genre: "action",authorid: "1"},
     {id: "2",name: "PK",genre: "romantic",authorid: "2"}
 ]
@@ -11,7 +12,7 @@ var Books = [
 var authors = [
     {id: "1",name: "Digu"},
     {id: "2",name: "Diganta"}
-]
+]*/
 
 const Book = new GraphQLObjectType({
     name: "Book",
@@ -63,6 +64,25 @@ const rootQuery = new GraphQLObjectType({
 
 })
 
+const mutation = new GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+        add_book: {
+            type: Book,
+            args: {name: {type: GraphQLString},genre: {type: GraphQLString},authorid: {type: GraphQLString}},
+            resolve(parent,args){
+                const new_book = new book_model({
+                    name: args.name,
+                    genre: args.genre,
+                    authorid: args.authorid
+                })
+                return new_book.save()
+            }
+        }
+    }
+})
+
 module.exports = new GraphQLSchema({
-    query: rootQuery
+    query: rootQuery,
+    mutation: mutation
 })
