@@ -7,6 +7,10 @@ const schema = new mongoose.Schema({
     },
     books: {
         type: Array
+    },
+    age: {
+        type:  Number,
+        required: true
     }
 })
 
