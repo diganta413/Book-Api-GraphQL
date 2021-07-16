@@ -13,7 +13,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
         <div className="App">
-          <h1 style={{ marginLeft: "40%" }}>Appollo Client</h1>
           <BookList/>
         </div>
     </ApolloProvider>

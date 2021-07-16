@@ -1,0 +1,12 @@
+.bookList .book {
+  border: 2px solid #7c83fd;
+  padding: 5px;
+  width: 150px;
+  cursor: pointer;
+  box-shadow: 5px 5px #7c83fd;
+}
+.bookList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
